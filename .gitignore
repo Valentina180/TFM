@@ -207,3 +207,6 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# Kaggle datasets (several gigabytes, too big to upload to Github evey commit)
+data/

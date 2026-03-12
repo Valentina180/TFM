@@ -4,6 +4,9 @@ pandas
 numpy
 tqdm
 
+# Jupyter Notebook
+ipykernel
+
 # Kaggle API
 kaggle
 
@@ -13,9 +16,7 @@ pillow
 albumentations
 
 # Deep Learning (Core)
-torch
-torchvision
-torchaudio
+tensorflow
 
 # Optional but recommended for Notebooks/Progress
 matplotlib

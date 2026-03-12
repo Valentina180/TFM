@@ -8,29 +8,38 @@ load_dotenv()
 
 def download_and_unzip():
     # 2. Authenticate with Kaggle
-    # The library automatically looks for KAGGLE_USERNAME and KAGGLE_KEY in env variables
     api = KaggleApi()
     api.authenticate()
 
     dataset = "aptos2019-blindness-detection"
-    zip_file = f"{dataset}.zip"
-    extract_path = "data/"
+    # Define the data folder path
+    data_dir = "data"
+    
+    # Create the 'data' folder if it doesn't exist yet
+    if not os.path.exists(data_dir):
+        os.makedirs(data_dir)
+        print(f"Created directory: {data_dir}")
 
-    # 3. Download the competition files
-    print(f"Downloading {dataset}...")
-    api.competition_download_files(dataset, path='.')
+    # 3. Download the competition files directly into the data folder
+    print(f"Downloading {dataset} into {data_dir}/...")
+    # 'path' tells Kaggle where to put the downloaded zip
+    api.competition_download_files(dataset, path=data_dir)
 
-    # 4. Unzip using Python (cross-platform)
-    if os.path.exists(zip_file):
-        print(f"Unzipping {zip_file} into {extract_path}...")
-        with zipfile.ZipFile(zip_file, 'r') as zip_ref:
-            zip_ref.extractall(extract_path)
+    # The file Kaggle creates will be inside the data folder
+    zip_file_path = os.path.join(data_dir, f"{dataset}.zip")
+
+    # 4. Unzip using Python
+    if os.path.exists(zip_file_path):
+        print(f"Unzipping {zip_file_path}...")
+        with zipfile.ZipFile(zip_file_path, 'r') as zip_ref:
+            # Extracting into the same data folder
+            zip_ref.extractall(data_dir)
         
-        # Optional: Remove the zip file to save space
-        # os.remove(zip_file) 
-        print("Done!")
+        # Remove the zip file to keep the 'data' folder clean
+        os.remove(zip_file_path) 
+        print(f"Done! Files are ready in the '{data_dir}' folder.")
     else:
-        print("Error: Download failed. Check your Kaggle credentials and internet.")
+        print("Error: Download failed. Check your Kaggle credentials and rules acceptance.")
 
 if __name__ == "__main__":
     download_and_unzip()
