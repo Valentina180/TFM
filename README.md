@@ -1,7 +1,7 @@
 # TFM
 Classification and detection of diabetic retinopathy from fundus images using Deep Learning
 
-Valentina_entrega_final.ipynb was created in Google Colab so it's easier to run it there. Just click 'Open in Colab' at the top of the notebook.
+Para ejecutar el clasificador de imagenes, ejecutar MainColab.ipynb si se está trabajando en Google Colab. Ejecutar MainLocal.ipynb si se está trabajando en local
 
 ## Repository Structure
 
